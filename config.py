@@ -11,7 +11,7 @@ class Config:
 
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
-    SQLALCHEMY_TRACK_MODIFICATIONS = False 
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     
 
 class ProdConfig(Config):
