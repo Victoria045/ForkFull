@@ -4,6 +4,7 @@ from config import config_options
 from flask_sqlalchemy import SQLAlchemy 
 from flask_uploads import UploadSet, configure_uploads, IMAGES 
 from werkzeug.utils import secure_filename
+from werkzeug.datastructures import  FileStorage
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
