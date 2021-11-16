@@ -3,6 +3,8 @@ from . import main
 from .. import db,photos 
 from .forms import UploadForm
 from ..models import User,Upload
+from werkzeug.utils import secure_filename
+import os 
 
 
 # Views
@@ -20,14 +22,24 @@ def index():
 # @login_required 
 def new_upload():
 
-    form = UploadForm() 
+    # import pdb; pdb.set_trace();
+
+    form = UploadForm()
     if form.validate_on_submit():
-        # image = form.image.data 
-        name = form.name.data 
+        filename = photos.save(form.image_path.data)
+        file_url = photos.url(filename)
+
+        # image_path = secure_filename(form.image_path.data.filename)
+        # image_path = form.image_path.data 
+
+        name = form.name.data
         category = form.category.data 
         price = form.price.data 
-        new_upload_object = Upload(name=name, category=category, price=price)
+        new_upload_object = Upload(image_path=file_url,name=name, category=category, price=price)
         new_upload_object.save_upload()
+        # import pdb; pdb.set_trace()
         return redirect(url_for('main.index')) 
 
-    return render_template('upload.html', form=form)
+    # else:
+    #     file_url = None
+    return render_template('upload.html', form=form) 
