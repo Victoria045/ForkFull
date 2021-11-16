@@ -11,7 +11,7 @@ class Upload(db.Model):
     __tablename__ = 'uploads' 
 
     id = db.Column(db.Integer, primary_key = True) 
-    # image_path = db.Column(db.String()) 
+    image_path = db.Column(db.Text, nullable = False, default='default.jpeg') 
     name = db.Column(db.String(255),nullable = False) 
     category = db.Column(db.String(255), index = True,nullable = False) 
     price = db.Column(db.Integer, index = True,nullable = False) 
