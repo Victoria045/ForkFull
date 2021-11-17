@@ -17,6 +17,7 @@ class User(db.Model,UserMixin):
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
+    Role = db.Column(db.String(255), index = True,nullable = False) 
     
       
     @property

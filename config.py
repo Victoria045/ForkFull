@@ -6,7 +6,7 @@ class Config:
     '''
     
     SECRET_KEY = os.environ.get("SECRET_KEY")
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/FORKFULL'
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
     UPLOADED_PHOTOS_DEST ='app/static/photos'
@@ -14,7 +14,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/FORKFULL'
     DEBUG = True
 
 class ProdConfig(Config):
@@ -38,7 +38,7 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/FORKFULL'
     DEBUG = True
 
 
