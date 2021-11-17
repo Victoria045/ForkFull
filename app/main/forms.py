@@ -9,3 +9,7 @@ class UploadForm(FlaskForm):
     category = SelectField('Category', choices=[('BreakFast','BreakFast'), ('Lunch','Lunch'),('Dinner','Dinner')])
     price = IntegerField('Price', validators=[DataRequired()]) 
     submit = SubmitField('Upload')
+    
+class Authentication(FlaskForm):
+    category = SelectField('Post category',choices=[('Owner','Owner'),('Customer', '')], validators=[DataRequired()])
+    submit = SubmitField('Submit')
