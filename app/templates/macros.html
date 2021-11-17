@@ -1,0 +1,37 @@
+{% macro display(uploads) %}
+
+<div class="container-fluid">
+		<div class="row">
+				{% if uploads %}
+					{% for upload in uploads %}
+					
+					<div class="col-md-4 mb-5" >
+						<div class="thumbnail">
+							<!-- <h5 class="card-header text-center">{#{{upload.name}}#}</h5> -->
+							<div class="card" style="width: 20rem;">
+								{% if upload.image_path %}
+										<img class="card-img-top" src="{{ upload.image_path }}">
+										{% endif %}
+								<div class="card-body">	
+										<p class="card-text text-center" style="font-size:22px">{{upload.name}}</p>
+										<p class="text-center" style="font-size:17px"> Ksh {{upload.price}}</p>
+										<div class="text-center">
+											<button class="btn btn-sm btn-primary">Add to Cart</button>
+										</div>				
+								</div>
+						 </div>
+						</div>
+					</div> 
+
+					{% endfor %}
+				{% else %}
+				<div class="card w-90 mb-3">
+					<div class="card-body">
+				
+						<p class="card-title">Category Has 0 posts</p>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+</div>
+{% endmacro %}`

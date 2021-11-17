@@ -3,13 +3,12 @@ from . import auth
 from ..models import User
 from .forms import RegistrationForm,LoginForm
 from .. import db
-from flask_login import login_user,logout_user,login_required
-from .forms import RegistrationForm
-from .. import db
+from  flask_login import login_user,logout_user,login_required
 
 
 
 @auth.route('/register',methods = ["GET","POST"])
+@login_required
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -17,11 +16,12 @@ def register():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('auth.login'))
-        title = "New Account"
+    
     return render_template('auth/registration.html',registration_form = form)
 
 
 @auth.route('/login',methods=['GET','POST'])
+@login_required
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
