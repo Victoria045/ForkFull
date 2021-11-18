@@ -1,7 +1,8 @@
 from flask import Flask,render_template,request,redirect,url_for
 from . import main 
 from .. import db
-from .forms import UploadForm
+from flask_login import login_required
+from .forms import UploadForm, Authentication
 import os 
 
 
@@ -31,3 +32,6 @@ def new_upload():
     # else:
     #     file_url = None
     return render_template('upload.html') 
+
+
+    

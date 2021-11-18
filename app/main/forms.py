@@ -11,5 +11,5 @@ class UploadForm(FlaskForm):
     submit = SubmitField('Upload')
     
 class Authentication(FlaskForm):
-    category = SelectField('Post category',choices=[('Owner','Owner'),('Customer', '')], validators=[DataRequired()])
+    role = SelectField('Post category',choices=[('Owner','Owner'),('Customer', '')], validators=[DataRequired()])
     submit = SubmitField('Submit')
