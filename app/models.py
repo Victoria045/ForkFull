@@ -5,7 +5,8 @@ class User(db.Model):
     __tablename__ = 'users' 
 
     id = db.Column(db.Integer,primary_key = True)
-    uploads = db.relationship('Upload', backref='user', lazy='dynamic') 
+    uploads = db.relationship('Upload', backref='user', lazy='dynamic')  
+
 
 class Upload(db.Model): 
     __tablename__ = 'uploads' 
@@ -24,5 +25,3 @@ class Upload(db.Model):
 
     def __repr__(Self):
         return f'Upload {self.post}' 
-
-    

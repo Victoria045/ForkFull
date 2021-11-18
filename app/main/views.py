@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,session,render_template,request,redirect,url_for
 from . import main 
 from .. import db,photos 
 from .forms import UploadForm
@@ -28,18 +28,10 @@ def new_upload():
     if form.validate_on_submit():
         filename = photos.save(form.image_path.data)
         file_url = photos.url(filename)
-
-        # image_path = secure_filename(form.image_path.data.filename)
-        # image_path = form.image_path.data 
-
         name = form.name.data
         category = form.category.data 
         price = form.price.data 
         new_upload_object = Upload(image_path=file_url,name=name, category=category, price=price)
         new_upload_object.save_upload()
-        # import pdb; pdb.set_trace()
         return redirect(url_for('main.index')) 
-
-    # else:
-    #     file_url = None
     return render_template('upload.html', form=form) 
