@@ -8,6 +8,7 @@ from .forms import UploadForm, accountForm
 from ..models import Account, User,Upload
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
+import os
 
 # Views
 @main.route('/')
