@@ -1,10 +1,37 @@
-from flask import render_template 
+from flask import Flask,session,render_template,request,redirect,url_for
 from . import main 
 from .. import db,photos 
+from .forms import UploadForm
+from ..models import User,Upload
+from werkzeug.utils import secure_filename
+import os 
 
 
 # Views
 @main.route('/')
 def index():
 
-    return render_template('index.html')
+    uploads = Upload.query.all()
+    breakfast = Upload.query.filter_by(category = 'BreakFast').all()
+    lunch = Upload.query.filter_by(category = 'Lunch').all()
+    dinner = Upload.query.filter_by(category = 'Dinner').all()
+    return render_template('index.html', uploads = uploads, breakfast = breakfast, lunch = lunch, dinner = dinner) 
+
+
+@main.route('/new_upload', methods = ['POST','GET'])
+# @login_required 
+def new_upload():
+
+    # import pdb; pdb.set_trace();
+
+    form = UploadForm()
+    if form.validate_on_submit():
+        filename = photos.save(form.image_path.data)
+        file_url = photos.url(filename)
+        name = form.name.data
+        category = form.category.data 
+        price = form.price.data 
+        new_upload_object = Upload(image_path=file_url,name=name, category=category, price=price)
+        new_upload_object.save_upload()
+        return redirect(url_for('main.index')) 
+    return render_template('upload.html', form=form) 
