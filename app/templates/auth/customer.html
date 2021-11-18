@@ -1,7 +1,7 @@
 {% include 'bootstrap/base.html'%}
 
 <div class="row">
-   <div class="col-md-6">
+   <div class="col-xs-offset-4 col-md-2" >
       {% if current_user.is_authenticated %}
       <ul class="list-unstyled">
          <li class="nav-item list-unstyled active"><a class="nav-link"  href="{{url_for('auth.logout')}}">Sign out Customer</a></li>
@@ -11,7 +11,7 @@
          {%endif%}
       </ul>
    </div>
-   <div class="col-md-6">
+   <div class="col-xs-offset-6">
       <ul class="navbar-nav d-inline ml-auto">
          {% if current_user.is_authenticated %}
        
