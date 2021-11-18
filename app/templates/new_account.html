@@ -1,0 +1,16 @@
+{% extends 'base.html'%} 
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 container">
+      <form action="" enctype="multipart/form-data" method="POST">
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4 text-center">Account Info</legend>
+          {{wtf.quick_form(form)}}
+          
+        </fieldset>
+      </form>
+    </div>
+    {% endblock%}

@@ -26,6 +26,23 @@ class Upload(db.Model):
     # def __repr__(self):
     #     return f'Upload {#{self.name}#}' 
 
+class Account(db.Model):
+    _tablename_ = 'account'
+    id = db.Column(db.Integer, primary_key = True) 
+    picture = db.Column(db.Text, nullable = False)
+    restaurant_name = db.Column(db.String(255),nullable = False) 
+    location = db.Column(db.String(255),nullable = False)
+
+    def save_account(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f"Account('{self.picture}', '{self.restaurant_name}', '{self.location}')"
+
+
+
+
     
     def __repr__(Self):
         return f'Upload {self.post}' 
