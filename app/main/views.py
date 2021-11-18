@@ -22,7 +22,7 @@ def index():
 
 
 @main.route('/new_upload', methods = ['POST','GET'])
-# @login_required 
+@login_required 
 def new_upload():
 
     # import pdb; pdb.set_trace();
@@ -38,13 +38,13 @@ def new_upload():
         new_upload_object.save_upload()
         return redirect(url_for('main.index')) 
 
-    # else:
-    #     file_url = None
     return render_template('upload.html', form=form) 
 
+
 @main.route('/account/new', methods=['POST','GET']) 
+@login_required
 def account_new():
-    form =accountForm()
+    form = accountForm()
     #import pdb; pdb.set_trace();
     if form.validate_on_submit():
         filename = photos.save(form.picture.data)
@@ -60,7 +60,8 @@ def account_new():
 
     return render_template('new_account.html', form=form)
 
-@main.route('/account/<int:id>') 
+@main.route('/account/<int:id>')
+@login_required 
 def account(id):
     
     account = Account.query.get(id) 
@@ -69,7 +70,7 @@ def account(id):
     return render_template('account.html', account=account)
 
 @main.route('/account/update/<int:id>', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def update_account(id):
     account = Account.query.get(id)
     print(account)
@@ -98,7 +99,7 @@ def update_account(id):
     return render_template('new_account.html', form=form)
   
 @main.route('/account/delete/<int:id>', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def delete_account(id):
     account = Account.query.get(id)
     if account is None:
@@ -112,13 +113,13 @@ def delete_account(id):
     # return render_template('upload.html', form=form)
 
 @main.route('/uploads/<int:id>')
-#@login_required
+@login_required
 def uploads(id):
     upload = Upload.query.get(id)
     return render_template('single_upload.html',upload=upload)
 
 @main.route('/uploads/<int:id>/update', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def update_upload(id):
     upload = Upload.query.get(id)
     if upload is None:
@@ -149,7 +150,7 @@ def update_upload(id):
     return render_template('upload.html', title=title,form=form)
 
 @main.route('/uploads/<int:id>/delete', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def delete_upload(id):
     upload = Upload.query.get(id)
     if upload is None:
