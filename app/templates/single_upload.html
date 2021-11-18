@@ -1,0 +1,32 @@
+{% extends 'base.html'%} 
+{%block content%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card" style="width:100%;">
+                    <div class="card-body">
+                        {% if upload.image_path %}
+                        <div style="justify-content: center;">
+                            <img src="{{ upload.image_path }}">
+                        </div>
+                        {% endif %}
+                        <h2>Name: {{upload.name|title}}</h2>
+                        <h2>Category: {{upload.category|title}}</h2>
+                        <h2>Price: Ksh. {{upload.price}}</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="{{url_for('main.update_upload',id=upload.id)}}"><button class="btn btn-lg btn-success">Update</button></a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{url_for('main.delete_upload',id=upload.id)}}"><button class="btn btn-lg btn-danger">Delete</button></a>
+                            </div>                    
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+{%endblock%}
