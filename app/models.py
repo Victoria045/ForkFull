@@ -22,7 +22,7 @@ class Upload(db.Model):
         db.session.add(self)
         db.session.commit() 
 
-    def __repr__(Self):
-        return f'Upload {self.post}' 
+    def __repr__(self):
+        return f'Upload {self.name}' 
 
     
