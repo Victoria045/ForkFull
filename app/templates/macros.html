@@ -10,19 +10,19 @@
 							<!-- <h5 class="card-header text-center">{#{{upload.name}}#}</h5> -->
 							<div class="card" style="width: 20rem;">
 								{% if upload.image_path %}
-										<img class="card-img-top" src="{{ upload.image_path }}">
+										<img class="card-img-top" style="width:20rem; height:12rem; object-fit:cover;" src="{{ upload.image_path }}">
 										{% endif %}
 								<div class="card-body">	
-										<p class="card-text text-center" style="font-size:22px">{{upload.name}}</p>
+										<p class="card-text text-center" style="font-size:22px"><a href="{{url_for('main.uploads', id=upload.id)}}">{{upload.name}}</a></p>
 										<p class="text-center" style="font-size:17px"> Ksh {{upload.price}}</p>
 										<div class="text-center">
-											<button class="btn btn-sm btn-primary">Add to Cart</button>
-										</div>				
+											<button type="submit" onclick="alert('Added To Cart Sucessfully')" class="btn btn-sm btn-primary">Add to Cart</button>
+											<!-- <a href="{#{{url_for('main.AddCart')}}#}" class="btn btn-primary btn-sm">Add to CArt</a> -->
+										</div>			
 								</div>
 						 </div>
 						</div>
 					</div> 
-
 					{% endfor %}
 				{% else %}
 				<div class="card w-90 mb-3">
@@ -34,4 +34,4 @@
 				{% endif %}
 			</div>
 </div>
-{% endmacro %}`
+{% endmacro %}

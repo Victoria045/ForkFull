@@ -1,24 +1,22 @@
-{% extends 'base.html'%}
-{% import 'bootstrap/wtf.html' as wtf %}
-
-
+{% extends 'base.html'%} 
+{% import 'bootstrap/wtf.html' as wtf %} 
 {% block content %}
 
-    <div  >  
-            <div class=" row" >
-                    
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            <h2 class="text-center">Create Your Upload Here!</h2>
-                            {{wtf.quick_form(form)}} 
-                            {% for error in form.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                            {% endfor %}
-                        </form>
-                    </div>
-                    <div class="col-md-2"></div>
-            </div>
+<div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form action="" method="POST" enctype="multipart/form-data">
+        <h2 class="text-center">Create Your Upload Here!</h2>
+        {{wtf.quick_form(form)}} 
+        
+        {% for error in form.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+      </form>
     </div>
-   
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
 {% endblock%}
