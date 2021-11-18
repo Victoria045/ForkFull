@@ -1,8 +1,8 @@
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request, session,redirect,url_for
 from . import main 
 from .. import db,photos 
 from .forms import UploadForm
-from ..models import User,Upload
+from ..models import User,Upload,ProductOrder,Cart
 from werkzeug.utils import secure_filename
 import os 
 
@@ -29,9 +29,6 @@ def new_upload():
         filename = photos.save(form.image_path.data)
         file_url = photos.url(filename)
 
-        # image_path = secure_filename(form.image_path.data.filename)
-        # image_path = form.image_path.data 
-
         name = form.name.data
         category = form.category.data 
         price = form.price.data 
@@ -42,4 +39,18 @@ def new_upload():
 
     # else:
     #     file_url = None
-    return render_template('upload.html', form=form) 
+    return render_template('upload.html', form=form)
+
+
+@main.route('/add_cart', methods = ['POST','GET'])
+# @login_required 
+def add_cart():
+    upload_id = request.form.get('upload.id')
+    quantity = request.form.get('quantity')
+    all_uploads = ProductOrder.query.filter_by(upload_id = upload_id).all()
+    new_upload = ProductOrder(upload_id=upload_id)
+    new_upload.save_productorder()
+    
+
+    # return redirect(url_for('main.cart'))
+    return render_template('cart.html', quantity=quantity, upload_id=upload_id)

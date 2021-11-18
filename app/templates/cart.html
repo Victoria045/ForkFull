@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+            {% if productorder %}
+                {% for productorder in productorder %}
+                
+                
+                    
+                        <!-- <h5 class="card-header text-center">{#{{upload.name}}#}</h5> -->
+                        
+                            {% if upload.image_path %}
+                                    <img class="card-img-top" src="{{ cart.upload.image_path }}">
+                                    {% endif %}
+                            
+                                    <p class="card-text text-center" style="font-size:22px">{{cart.productorder.name}}</p>
+                                    <p class="text-center" style="font-size:17px"> Ksh {{upload.price}}</p>
+                                    <div class="text-center">
+                                        <button type="submit" onclick="alert('Your order was received')" class="btn btn-sm btn-primary">Checkout</button>
+                                    </div>				
+                           
+                             
+
+                {% endfor %}
+            {% else %}
+            <div class="card w-90 mb-3">
+                <div class="card-body">
+            
+                    <p class="card-title">No Order Placed Yet</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+</div>
