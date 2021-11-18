@@ -1,13 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField,ValidationError,BooleanField
-from wtforms.validators import Required,Email,EqualTo
+from wtforms.validators import DataRequired,Email,EqualTo
 from ..models import User
 
 class RegistrationForm(FlaskForm):
-    email = StringField('Email',validators=[Required(),Email()])
-    username = StringField('Username',validators = [Required()])
-    password = PasswordField('Password',validators = [Required(), EqualTo('password_confirm',message = 'Passwords must match')])
-    password_confirm = PasswordField('Confirm Password',validators = [Required()])
+    email = StringField('Email',validators=[DataRequired(),Email()])
+    username = StringField('Username',validators = [DataRequired()])
+    password = PasswordField('Password',validators = [DataRequired(), EqualTo('password_confirm',message = 'Passwords must match')])
+    password_confirm = PasswordField('Confirm Password',validators = [DataRequired()])
     submit = SubmitField('Register')
     
     def validate_email(self,data_field):
@@ -19,16 +19,16 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('That username is taken!!')
         
 class LoginForm(FlaskForm):
-    email = StringField('Email',validators=[Required(),Email()])
-    password = PasswordField('Password',validators =[Required()])
+    email = StringField('Email',validators=[DataRequired(),Email()])
+    password = PasswordField('Password',validators =[DataRequired()])
     remember = BooleanField('Remember me')
     submit = SubmitField('Log In')
     
 class RegistrationFormOwner(FlaskForm):
-    email = StringField('Email',validators=[Required(),Email()])
-    username = StringField('Username',validators = [Required()])
-    password = PasswordField('Password',validators = [Required(), EqualTo('password_confirm',message = 'Passwords must match')])
-    password_confirm = PasswordField('Confirm Password',validators = [Required()])
+    email = StringField('Email',validators=[DataRequired(),Email()])
+    username = StringField('Username',validators = [DataRequired()])
+    password = PasswordField('Password',validators = [DataRequired(), EqualTo('password_confirm',message = 'Passwords must match')])
+    password_confirm = PasswordField('Confirm Password',validators = [DataRequired()])
     submit = SubmitField('Register Owner')
     
     def validate_email(self,data_field):
@@ -40,7 +40,7 @@ class RegistrationFormOwner(FlaskForm):
             raise ValidationError('That username is taken!!')
         
 class LoginFormOwner(FlaskForm):
-    email = StringField('Email',validators=[Required(),Email()])
-    password = PasswordField('Password',validators =[Required()])
+    email = StringField('Email',validators=[DataRequired(),Email()])
+    password = PasswordField('Password',validators =[DataRequired()])
     remember = BooleanField('Remember me')
     submit = SubmitField('Log In Owner')

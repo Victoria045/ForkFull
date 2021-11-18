@@ -21,6 +21,8 @@ class accountForm(FlaskForm):
 
     submit = SubmitField('Submit')
 
-# class updateAccount(FlaskForm):
-        
+# class updateAccount(FlaskForm):      
 
+class Authentication(FlaskForm):
+    role = SelectField('Post category',choices=[('Owner','Owner'),('Customer', '')], validators=[DataRequired()])
+    submit = SubmitField('Submit')
