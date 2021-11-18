@@ -5,6 +5,7 @@ from config import config_options
 from flask_sqlalchemy import SQLAlchemy 
 from sqlalchemy.exc import IntegrityError
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class 
+from flask_mail import Mail 
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 import os
@@ -18,11 +19,12 @@ login_manager.login_view = 'auth.login'
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 photos = UploadSet('photos',IMAGES) 
+mail = Mail()
 
 def create_app(config_name):
 
     app = Flask(__name__)
-
+~
     # Creating the app configurations
     app.config.from_object(config_options[config_name])
     app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'static/photos')
@@ -31,6 +33,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app) 
     login_manager.init_app(app) 
+    mail.init_app(app)
 
     # Registering the blueprint
     from .main import main as main_blueprint
