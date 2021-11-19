@@ -8,7 +8,8 @@ Built by: Barbara, Caleb, Joy, Juliana, Timothy, Victoria
 * python3.6
 * pip
 * Flask 
-
+  
+  
 #### Cloning
 * Open Terminal:
 
